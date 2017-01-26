@@ -22,7 +22,6 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
   var radius: CLLocationDistance
   var identifier: String
   var note: String
-  var eventType: EventType
   
   var title: String? {
     if note.isEmpty {
@@ -32,16 +31,14 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
   }
   
   var subtitle: String? {
-    let eventTypeString = eventType.rawValue
-    return "Radius: \(radius)m - \(eventTypeString)"
+    return "Radius: \(radius)m - \"on entry"
   }
   
-  init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String, note: String, eventType: EventType) {
+  init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String, note: String) {
     self.coordinate = coordinate
     self.radius = radius
     self.identifier = identifier
     self.note = note
-    self.eventType = eventType
   }
   
   // MARK: NSCoding
@@ -52,7 +49,6 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
     radius = decoder.decodeDouble(forKey: GeoKey.radius)
     identifier = decoder.decodeObject(forKey: GeoKey.identifier) as! String
     note = decoder.decodeObject(forKey: GeoKey.note) as! String
-    eventType = EventType(rawValue: decoder.decodeObject(forKey: GeoKey.eventType) as! String)!
   }
   
   func encode(with coder: NSCoder) {
@@ -61,7 +57,6 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
     coder.encode(radius, forKey: GeoKey.radius)
     coder.encode(identifier, forKey: GeoKey.identifier)
     coder.encode(note, forKey: GeoKey.note)
-    coder.encode(eventType.rawValue, forKey: GeoKey.eventType)
   }
   
 }

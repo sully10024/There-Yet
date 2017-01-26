@@ -100,7 +100,7 @@ class GeotificationsViewController: UIViewController {
     // 1
     let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
     // 2
-    region.notifyOnEntry = (geotification.eventType == .onEntry)
+    region.notifyOnEntry = true
     region.notifyOnExit = !region.notifyOnEntry
     return region
   }
@@ -132,11 +132,11 @@ class GeotificationsViewController: UIViewController {
 // MARK: AddGeotificationViewControllerDelegate
 extension GeotificationsViewController: AddGeotificationsViewControllerDelegate {
   
-  func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: EventType) {
+  func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String) {
     controller.dismiss(animated: true, completion: nil)
     // 1
     let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
-    let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, identifier: identifier, note: note, eventType: eventType)
+    let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, identifier: identifier, note: note)
     add(geotification: geotification)
     // 2
     startMonitoring(geotification: geotification)
