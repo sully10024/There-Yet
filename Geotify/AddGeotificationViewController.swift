@@ -3,8 +3,7 @@ import MapKit
 
 
 protocol AddGeotificationsViewControllerDelegate {
-  func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D,
-    radius: Double, identifier: String, note: String)
+  func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String)
 }
 
 class AddGeotificationViewController: UITableViewController {
@@ -52,7 +51,9 @@ class AddGeotificationViewController: UITableViewController {
         self.performSearch()
     }
 	
-
+	@IBAction func clearSearch(_ sender: AnyObject) {
+		mapView.removeAnnotations(mapView.annotations)
+	}
 	
     func performSearch() {
         
