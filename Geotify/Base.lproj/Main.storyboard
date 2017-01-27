@@ -110,7 +110,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <action selector="textFieldReturn:" destination="WOc-Kh-RdY" eventType="editingDidEndOnExit" id="Jov-Em-1Dm"/>
+                                <action selector="textFieldDidReturn:" destination="WOc-Kh-RdY" eventType="editingDidEndOnExit" id="HdP-UH-Cw1"/>
                             </connections>
                         </textField>
                         <view key="tableFooterView" contentMode="scaleToFill" id="vs5-EH-36k">
@@ -125,15 +125,18 @@
                                         <rect key="frame" x="0.0" y="30" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Tl-gH-olP" id="G8a-9u-bod">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frU-qC-iGG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="KFK-uw-HxV" id="H8K-Km-M1o"/>
+                                                    </connections>
+                                                </mapView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddPin" translatesAutoresizingMaskIntoConstraints="NO" id="WUy-YH-DKS">
                                                     <rect key="frame" x="150" y="112" width="75" height="75"/>
                                                 </imageView>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frU-qC-iGG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
-                                                </mapView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="frU-qC-iGG" secondAttribute="trailing" id="7a7-3x-c9w"/>
@@ -149,7 +152,7 @@
                                         <rect key="frame" x="0.0" y="330" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PnT-uo-HVA" id="Cor-xF-fQq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" placeholder="Radius in meters" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JCu-BO-y8b">
@@ -181,7 +184,7 @@
                                         <rect key="frame" x="0.0" y="374" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zDV-Ga-KBv" id="U6I-iK-BTi">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Reminder note to be shown" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="USr-pF-VnD">
@@ -212,6 +215,10 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="WOc-Kh-RdY" id="8sB-Yz-Pj4"/>
+                            <outlet property="delegate" destination="WOc-Kh-RdY" id="ZvI-W3-HhK"/>
+                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="cjD-eh-hQf">
                         <leftBarButtonItems>
@@ -220,7 +227,11 @@
                                     <action selector="onCancelWithSender:" destination="WOc-Kh-RdY" id="fR4-Ya-HVp"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Clear Search" id="eMF-Oi-MRU"/>
+                            <barButtonItem title="Clear Search" id="eMF-Oi-MRU">
+                                <connections>
+                                    <action selector="onClearMapSearch:" destination="WOc-Kh-RdY" id="Tcl-Yz-ILL"/>
+                                </connections>
+                            </barButtonItem>
                         </leftBarButtonItems>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="Zqz-jV-nhQ">
@@ -242,7 +253,7 @@
                         <outlet property="noteTextField" destination="USr-pF-VnD" id="WbB-ib-wAX"/>
                         <outlet property="radiusTextField" destination="JCu-BO-y8b" id="Xwg-hY-QwP"/>
                         <outlet property="searchBar" destination="DfM-Br-rgY" id="tbl-mm-l62"/>
-                        <outlet property="searchText" destination="DfM-Br-rgY" id="PuA-P6-asU"/>
+                        <outlet property="searchText" destination="DfM-Br-rgY" id="Gu6-cx-6bw"/>
                         <outlet property="zoomButton" destination="IOi-hP-hD4" id="9qv-3e-w8u"/>
                     </connections>
                 </tableViewController>

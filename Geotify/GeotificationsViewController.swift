@@ -69,7 +69,7 @@ class GeotificationsViewController: UIViewController {
   }
   
   func updateGeotificationsCount() {
-    title = "Geotifications (\(geotifications.count))"
+    title = "My \"There Yet\" Notifications"
     navigationItem.rightBarButtonItem?.isEnabled = (geotifications.count < 20)
   }
   

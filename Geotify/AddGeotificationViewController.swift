@@ -1,9 +1,9 @@
 import UIKit
 import MapKit
 
-
 protocol AddGeotificationsViewControllerDelegate {
-  func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String)
+  func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D,
+    radius: Double, identifier: String, note: String)
 }
 
 class AddGeotificationViewController: UITableViewController {
@@ -13,8 +13,9 @@ class AddGeotificationViewController: UITableViewController {
   @IBOutlet weak var radiusTextField: UITextField!
   @IBOutlet weak var noteTextField: UITextField!
   @IBOutlet weak var mapView: MKMapView!
-	@IBOutlet weak var searchText: UITextField!
+  @IBOutlet weak var searchBar: UITextField!
   @IBOutlet weak var clearButton: UIBarButtonItem!
+  @IBOutlet weak var searchText: UITextField!
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
@@ -44,38 +45,66 @@ class AddGeotificationViewController: UITableViewController {
   @IBAction func onZoomToCurrentLocation(_ sender: Any) {
     mapView.zoomToUserLocation()
   }
+  
+  // clears the map search when the clear search button is pressed
+  @IBAction func onClearMapSearch(_ sender: UIBarButtonItem) {
+    matchingItems.removeAll()
+    mapView.removeAnnotations(mapView.annotations)
+  }
+  
+  //IBAction for the read the searchbar
+  @IBAction func textFieldDidReturn(_ sender: AnyObject) {
+    _ = sender.resignFirstResponder()
+    mapView.removeAnnotations(mapView.annotations)
+    self.performSearch()
+  }
+  
+  
+  // method for doing a search
+  func performSearch() {
     
-    @IBAction func textFieldReturn(_ sender: AnyObject) {
-        _ = sender.resignFirstResponder()
-        mapView.removeAnnotations(mapView.annotations)
-        self.performSearch()
-    }
-	
-	@IBAction func clearSearch(_ sender: AnyObject) {
-		mapView.removeAnnotations(mapView.annotations)
-	}
-	
-    func performSearch() {
+    matchingItems.removeAll()
+    let request = MKLocalSearchRequest()
+    request.naturalLanguageQuery = searchText.text
+    request.region = mapView.region
+    
+    let search = MKLocalSearch(request: request)
+    
+    var hasIteratedFirstItem = false
+    
+    search.start(completionHandler: {(response, error) in
+      
+      if error != nil {
+        print("Error occured in search: \(error!.localizedDescription)")
+      } else if response!.mapItems.count == 0 {
+        print("No matches found")
+      } else {
+        print("Matches found")
         
-        matchingItems.removeAll()
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = searchText.text
-        request.region = mapView.region
-        
-        let search = MKLocalSearch(request: request)
-        
-        search.start(completionHandler: {(response, error) in
+        for item in response!.mapItems {
+          // this if block zooms to the first result
+          if hasIteratedFirstItem == false
+          {
+            let newMapCenter = item.placemark.coordinate
+            let newMapRegion = MKCoordinateRegionMakeWithDistance(newMapCenter, 10000,10000)
             
-					if error == nil{
-						for item in response!.mapItems {
-							self.matchingItems.append(item as MKMapItem)
-							let annotation = MKPointAnnotation()
-							annotation.coordinate = item.placemark.coordinate
-							annotation.title = item.name
-							self.mapView.addAnnotation(annotation)
-						}
-					}
-					
-        })
-    }
+            self.mapView.setRegion(newMapRegion, animated:true)
+            
+            hasIteratedFirstItem = true
+          }
+          
+          print("Name = \(item.name)")
+          print("Phone = \(item.phoneNumber)")
+          
+          self.matchingItems.append(item as MKMapItem)
+          print("Matching items = \(self.matchingItems.count)")
+          
+          let annotation = MKPointAnnotation()
+          annotation.coordinate = item.placemark.coordinate
+          annotation.title = item.name
+          self.mapView.addAnnotation(annotation)
+        }
+      }
+    })
+  }
 }

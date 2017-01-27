@@ -8,9 +8,10 @@ struct GeoKey {
   static let radius = "radius"
   static let identifier = "identifier"
   static let note = "note"
-  static let eventType = "eventTYpe"
+  static let eventType = "eventType"
 }
 
+// this is unnecessary now, because the selector no longer exists
 enum EventType: String {
   case onEntry = "On Entry"
   case onExit = "On Exit"
@@ -31,7 +32,7 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
   }
   
   var subtitle: String? {
-    return "Radius: \(radius)m - \"on entry"
+    return "Radius: \(radius)m - On Entry"
   }
   
   init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String, note: String) {

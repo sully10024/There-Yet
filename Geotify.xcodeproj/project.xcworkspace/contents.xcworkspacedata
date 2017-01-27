@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Geotify.xcodeproj">
+      location = "self:/Users/clay/Desktop/CS Stuff/App Versions/There Yet-dev/Geotify.xcodeproj">
    </FileRef>
 </Workspace>
