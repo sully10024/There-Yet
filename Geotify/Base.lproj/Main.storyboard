@@ -111,7 +111,7 @@
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
                             <connections>
                                 <action selector="onClearMapSearch:" destination="WOc-Kh-RdY" eventType="editingDidBegin" id="XwQ-fR-aK2"/>
-                                <action selector="searchTextFieldDidReturn:" destination="WOc-Kh-RdY" eventType="editingDidEndOnExit" id="5BM-wv-s0b"/>
+                                <action selector="textFieldDidReturn:" destination="WOc-Kh-RdY" eventType="editingDidEndOnExit" id="HdP-UH-Cw1"/>
                             </connections>
                         </textField>
                         <view key="tableFooterView" contentMode="scaleToFill" id="vs5-EH-36k">
@@ -199,10 +199,8 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Reminder note to be shown" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="USr-pF-VnD">
                                                     <rect key="frame" x="75" y="13" width="278" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
-                                                        <action selector="noteFieldDidReturn:" destination="WOc-Kh-RdY" eventType="editingDidEnd" id="2fc-ij-0Jn"/>
-                                                        <action selector="noteTextFieldDidReturn:" destination="WOc-Kh-RdY" eventType="editingDidEndOnExit" id="rEJ-3i-dhb"/>
                                                         <action selector="textFieldEditingChangedWithSender:" destination="WOc-Kh-RdY" eventType="editingChanged" id="TKA-QJ-9Sl"/>
                                                     </connections>
                                                 </textField>
