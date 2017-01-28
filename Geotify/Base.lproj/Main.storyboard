@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-690" y="504"/>
         </scene>
-        <!--Geotifications View Controller-->
+        <!--My Geofence Notification-->
         <scene sceneID="QSg-Wp-O1B">
             <objects>
                 <viewController id="LYI-dq-R4y" customClass="GeotificationsViewController" customModule="Geotify" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,7 +56,7 @@
                             <constraint firstAttribute="trailing" secondItem="fP9-ox-VWa" secondAttribute="trailing" id="wXm-Xs-UMV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dS8-nZ-3oV">
+                    <navigationItem key="navigationItem" title="My Geofence Notification" id="dS8-nZ-3oV">
                         <barButtonItem key="leftBarButtonItem" image="CurrentLocation" id="FIG-L9-xbZ">
                             <connections>
                                 <action selector="zoomToCurrentLocationWithSender:" destination="LYI-dq-R4y" id="e7K-H3-omj"/>
@@ -108,7 +108,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
                             <connections>
                                 <action selector="textFieldDidReturn:" destination="WOc-Kh-RdY" eventType="editingDidEndOnExit" id="HdP-UH-Cw1"/>
                             </connections>
@@ -221,18 +221,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="cjD-eh-hQf">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Cancel" id="xDC-Ux-qv5">
-                                <connections>
-                                    <action selector="onCancelWithSender:" destination="WOc-Kh-RdY" id="fR4-Ya-HVp"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Clear Search" id="eMF-Oi-MRU">
-                                <connections>
-                                    <action selector="onClearMapSearch:" destination="WOc-Kh-RdY" id="Tcl-Yz-ILL"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="xDC-Ux-qv5">
+                            <connections>
+                                <action selector="onCancelWithSender:" destination="WOc-Kh-RdY" id="fR4-Ya-HVp"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Add Notification" id="Zqz-jV-nhQ">
                                 <connections>
@@ -248,7 +241,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Zqz-jV-nhQ" id="ghk-If-qAk"/>
-                        <outlet property="clearButton" destination="eMF-Oi-MRU" id="q8z-iA-ku8"/>
                         <outlet property="mapView" destination="frU-qC-iGG" id="DtX-ni-IE0"/>
                         <outlet property="noteTextField" destination="USr-pF-VnD" id="WbB-ib-wAX"/>
                         <outlet property="radiusTextField" destination="JCu-BO-y8b" id="Xwg-hY-QwP"/>

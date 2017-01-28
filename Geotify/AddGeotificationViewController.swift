@@ -14,7 +14,6 @@ class AddGeotificationViewController: UITableViewController {
   @IBOutlet weak var noteTextField: UITextField!
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var searchBar: UITextField!
-  @IBOutlet weak var clearButton: UIBarButtonItem!
   @IBOutlet weak var searchText: UITextField!
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
@@ -22,7 +21,6 @@ class AddGeotificationViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    //navigationItem.rightBarButtonItems = [addButton, zoomButton]
     addButton.isEnabled = false
   }
 
@@ -47,7 +45,7 @@ class AddGeotificationViewController: UITableViewController {
   }
   
   // clears the map search when the clear search button is pressed
-  @IBAction func onClearMapSearch(_ sender: UIBarButtonItem) {
+  func onClearMapSearch() {
     matchingItems.removeAll()
     mapView.removeAnnotations(mapView.annotations)
   }

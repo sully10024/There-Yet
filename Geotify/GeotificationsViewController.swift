@@ -65,8 +65,8 @@ class GeotificationsViewController: UIViewController {
   }
   
   func updateGeotificationsCount() {
-    title = "My Geofence Notifications"
-    navigationItem.rightBarButtonItem?.isEnabled = (geotifications.count < 20)
+    title = "My Geofence Notification"
+    navigationItem.rightBarButtonItem?.isEnabled = (geotifications.count < 1)
   }
   
   // MARK: Map overlay functions
