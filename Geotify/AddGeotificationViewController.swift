@@ -30,7 +30,9 @@ class AddGeotificationViewController: UITableViewController {
   @IBAction func radiusSliderDidChange(_ sender: Any) {
     let sliderValueAsInt = Int(radiusSlider.value)
     
-    if sliderValueAsInt < 500 {
+    // if the radius < 1 km, show distance in meters
+    // if radius >= 1 km, display in km, and round to one decimal place
+    if sliderValueAsInt < 1000 {
       radiusLabel.text = "\(sliderValueAsInt) m"
     } else {
       radiusLabel.text = (NSString(format: "%.1f", (radiusSlider.value)/1000) as String) + " km"
