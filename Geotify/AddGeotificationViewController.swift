@@ -26,11 +26,11 @@ class AddGeotificationViewController: UITableViewController {
     addButton.isEnabled = false
   }
 
-  
+  // updates the label to the right of the radius slider
   @IBAction func radiusSliderDidChange(_ sender: Any) {
     let sliderValueAsInt = Int(radiusSlider.value)
     
-    if sliderValueAsInt < 500 {
+    if sliderValueAsInt < 1000 {
       radiusLabel.text = "\(sliderValueAsInt) m"
     } else {
       radiusLabel.text = (NSString(format: "%.1f", (radiusSlider.value)/1000) as String) + " km"
@@ -66,7 +66,7 @@ class AddGeotificationViewController: UITableViewController {
     mapView.removeAnnotations(mapView.annotations)
   }
   
-  @IBAction func textFieldDidReturn(_ sender: AnyObject) {
+  @IBAction func searchTextFieldDidReturn(_ sender: AnyObject) {
     _ = sender.resignFirstResponder()
     mapView.removeAnnotations(mapView.annotations)
     self.performSearch()
