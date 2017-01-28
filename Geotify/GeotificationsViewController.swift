@@ -10,8 +10,11 @@ class GeotificationsViewController: UIViewController {
   
   @IBOutlet weak var mapView: MKMapView!
   
+  // makes it possible to have more than one geotification if desired
   var geotifications: [Geotification] = []
   var locationManager = CLLocationManager()
+  
+  let MAX_GEOFENCES = 1
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -66,7 +69,7 @@ class GeotificationsViewController: UIViewController {
   
   func updateGeotificationsCount() {
     title = "My Geofence Notification"
-    navigationItem.rightBarButtonItem?.isEnabled = (geotifications.count < 1)
+    navigationItem.rightBarButtonItem?.isEnabled = (geotifications.count < MAX_GEOFENCES)
   }
   
   // MARK: Map overlay functions
@@ -189,6 +192,8 @@ extension GeotificationsViewController: MKMapViewDelegate {
     }
     return MKOverlayRenderer(overlay: overlay)
   }
+  
+  
   
   func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     // Delete geotification

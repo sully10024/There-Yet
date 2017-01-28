@@ -1,5 +1,6 @@
 import UIKit
 import MapKit
+import CoreLocation
 
 protocol AddGeotificationsViewControllerDelegate {
   func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D,
@@ -10,11 +11,12 @@ class AddGeotificationViewController: UITableViewController {
 
   @IBOutlet var addButton: UIBarButtonItem!
   @IBOutlet var zoomButton: UIBarButtonItem!
-  @IBOutlet weak var radiusTextField: UITextField!
+  @IBOutlet weak var radiusSlider: UISlider!
   @IBOutlet weak var noteTextField: UITextField!
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var searchBar: UITextField!
   @IBOutlet weak var searchText: UITextField!
+  @IBOutlet weak var radiusLabel: UILabel!
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
@@ -24,8 +26,22 @@ class AddGeotificationViewController: UITableViewController {
     addButton.isEnabled = false
   }
 
+  
+  @IBAction func radiusSliderDidChange(_ sender: Any) {
+    let sliderValueAsInt = Int(radiusSlider.value)
+    
+    if sliderValueAsInt < 500 {
+      radiusLabel.text = "\(sliderValueAsInt) m"
+    } else {
+      radiusLabel.text = (NSString(format: "%.1f", (radiusSlider.value)/1000) as String) + " km"
+    }
+    
+    //radiusLabel.text = (NSString(format: "%.1f", radiusSlider.value) as String) + " m"
+    //radiusLabel.text = "\(sliderValueAsInt)"
+  }
+  
   @IBAction func textFieldEditingChanged(sender: UITextField) {
-    addButton.isEnabled = !radiusTextField.text!.isEmpty && !noteTextField.text!.isEmpty
+    addButton.isEnabled = true
   }
 
   @IBAction func onCancel(sender: AnyObject) {
@@ -34,23 +50,22 @@ class AddGeotificationViewController: UITableViewController {
 
   @IBAction private func onAdd(sender: AnyObject) {
     let coordinate = mapView.centerCoordinate
-    let radius = Double(radiusTextField.text!) ?? 0
+    let radius = Double(String(format: "%.2f", radiusSlider.value))
     let identifier = NSUUID().uuidString
     let note = noteTextField.text
-    delegate?.addGeotificationViewController(controller: self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!)
+    delegate?.addGeotificationViewController(controller: self, didAddCoordinate: coordinate, radius: radius!, identifier: identifier, note: note!)
   }
   
   @IBAction func onZoomToCurrentLocation(_ sender: Any) {
     mapView.zoomToUserLocation()
   }
   
-  // clears the map search when the clear search button is pressed
-  func onClearMapSearch() {
+  // clears the search when the user starts editing in the searchBar
+  @IBAction func onClearMapSearch(_ sender: Any) {
     matchingItems.removeAll()
     mapView.removeAnnotations(mapView.annotations)
   }
   
-  //IBAction for the read the searchbar
   @IBAction func textFieldDidReturn(_ sender: AnyObject) {
     _ = sender.resignFirstResponder()
     mapView.removeAnnotations(mapView.annotations)
