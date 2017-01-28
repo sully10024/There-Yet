@@ -9,10 +9,13 @@ There are a few bugs I need to iron out, but the code works at the moment, which
 
 # Frequently Asked Questions
 Q: Why does your app only support the metric system?
+
 A: Because noboby except Americans and old British people like to use miles, feet, etc.
 
 Q: Can I make more than one geofence notification in this app?
+
 A: Not right now, but the code does allow you to.
 
 Q: Why do I keep getting notifications from the same geofence?
+
 A: Because I haven't figured out how to make them automatically delete themselves yet. If you decide you want to be helpful and stop complaining, feel free to submit a suggestion using GitHub's built-in features! :^)
