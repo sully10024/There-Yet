@@ -12,9 +12,11 @@ Q: Why does your app only support the metric system?
 
 A: Because noboby except Americans and old British people like to use miles, feet, etc.
 
+
 Q: Can I make more than one geofence notification in this app?
 
 A: Not right now, but the code does allow you to.
+
 
 Q: Why do I keep getting notifications from the same geofence?
 
