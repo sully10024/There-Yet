@@ -70,7 +70,7 @@ class AddGeotificationViewController: UITableViewController {
     
     let search = MKLocalSearch(request: request)
     
-    var hasIteratedFirstItem = false
+    var hasIteratedFirstItem = false // this is so that it only zooms to the first result
     
     search.start(completionHandler: {(response, error) in
       

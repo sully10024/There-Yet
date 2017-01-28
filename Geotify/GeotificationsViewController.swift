@@ -15,12 +15,8 @@ class GeotificationsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    super.viewDidLoad()
-    // 1
     locationManager.delegate = self
-    // 2
     locationManager.requestAlwaysAuthorization()
-    // 3
     loadAllGeotifications()
   }
   
@@ -97,9 +93,7 @@ class GeotificationsViewController: UIViewController {
   }
   
   func region(withGeotification geotification: Geotification) -> CLCircularRegion {
-    // 1
     let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
-    // 2
     region.notifyOnEntry = true
     region.notifyOnExit = !region.notifyOnEntry
     return region
@@ -113,7 +107,7 @@ class GeotificationsViewController: UIViewController {
     }
     // 2
     if CLLocationManager.authorizationStatus() != .authorizedAlways {
-      showAlert(withTitle:"Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.")
+      showAlert(withTitle:"Warning", message: "Your notification is saved but will only be activated once you grant Geotify permission to access the device location.")
     }
     // 3
     let region = self.region(withGeotification: geotification)
