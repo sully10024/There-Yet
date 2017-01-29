@@ -2,12 +2,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
-protocol AddGeotificationsViewControllerDelegate {
+protocol AddGeotificationsViewControllerDelegate
+{
   func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D,
     radius: Double, identifier: String, note: String)
 }
 
-class AddGeotificationViewController: UITableViewController {
+class AddGeotificationViewController: UITableViewController
+{
 
   @IBOutlet var addButton: UIBarButtonItem!
   @IBOutlet var zoomButton: UIBarButtonItem!
@@ -21,18 +23,21 @@ class AddGeotificationViewController: UITableViewController {
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
 
-  override func viewDidLoad() {
+  override func viewDidLoad()
+  {
     super.viewDidLoad()
     addButton.isEnabled = false
   }
 
   
-  @IBAction func radiusSliderDidChange(_ sender: Any) {
+  @IBAction func radiusSliderDidChange(_ sender: Any)
+  {
     let sliderValueAsInt = Int(radiusSlider.value)
     
     // if the radius < 1 km, show distance in meters
     // if radius >= 1 km, display in km, and round to one decimal place
-    if sliderValueAsInt < 1000 {
+    if sliderValueAsInt < 1000
+    {
       radiusLabel.text = "\(sliderValueAsInt) m"
     } else {
       radiusLabel.text = (NSString(format: "%.1f", (radiusSlider.value)/1000) as String) + " km"
@@ -101,9 +106,9 @@ class AddGeotificationViewController: UITableViewController {
           if hasIteratedFirstItem == false
           {
             let newMapCenter = item.placemark.coordinate
-            let newMapRegion = MKCoordinateRegionMakeWithDistance(newMapCenter, 10000,10000)
+            let newMapRegion = MKCoordinateRegionMakeWithDistance(newMapCenter, 1000,1000)
             
-            self.mapView.setRegion(newMapRegion, animated:true)
+            self.mapView.setRegion(newMapRegion, animated: true)
             
             hasIteratedFirstItem = true
           }
