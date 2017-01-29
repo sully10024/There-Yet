@@ -49,7 +49,7 @@ class AddGeotificationViewController: UITableViewController {
   @IBAction func onCancel(sender: AnyObject) {
     dismiss(animated: true, completion: nil)
   }
- // test
+
   @IBAction private func onAdd(sender: AnyObject) {
     let coordinate = mapView.centerCoordinate
     let radius = Double(String(format: "%.2f", radiusSlider.value))
