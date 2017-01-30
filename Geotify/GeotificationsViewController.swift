@@ -68,7 +68,7 @@ class GeotificationsViewController: UIViewController {
   }
   
   func updateGeotificationsCount() {
-    title = "Geofence Notifications (\(geotifications.count))"
+    title = "My Geofence Notification"
     navigationItem.rightBarButtonItem?.isEnabled = (geotifications.count < MAX_GEOFENCES)
   }
   
