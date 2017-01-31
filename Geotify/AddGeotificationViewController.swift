@@ -20,18 +20,17 @@ class AddGeotificationViewController: UITableViewController {
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
+  var isMetricView = true
 
   override func viewDidLoad() {
     super.viewDidLoad()
     addButton.isEnabled = false
   }
-
   
   @IBAction func radiusSliderDidChange(_ sender: Any) {
-    let sliderValueAsInt = Int(radiusSlider.value)
-    
-    if sliderValueAsInt < 1000 {
-      radiusLabel.text = "\(sliderValueAsInt) m"
+    let sliderValueAsMetersInt = Int(radiusSlider.value)
+    if sliderValueAsMetersInt < 1000 {
+      radiusLabel.text = "\(sliderValueAsMetersInt) m"
     } else {
       radiusLabel.text = (NSString(format: "%.1f", (radiusSlider.value)/1000) as String) + " km"
     }
