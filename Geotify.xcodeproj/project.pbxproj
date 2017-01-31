@@ -53,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6FEC05431E4138250090046A /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				6F749B321E3EBB4300692BC1 /* Address.swift */,
+				7D12FBD71E40FB2300840333 /* AddressBookTableViewController.swift */,
+			);
+			name = AddressBook;
+			sourceTree = "<group>";
+		};
 		D90CB6441A739B7A00228A1F = {
 			isa = PBXGroup;
 			children = (
@@ -75,14 +84,13 @@
 		D90CB64F1A739B7A00228A1F /* Geotify */ = {
 			isa = PBXGroup;
 			children = (
-				6F749B321E3EBB4300692BC1 /* Address.swift */,
-				7D12FBD71E40FB2300840333 /* AddressBookTableViewController.swift */,
 				D90CB6521A739B7A00228A1F /* AppDelegate.swift */,
 				D90CB6761A73B1ED00228A1F /* GeotificationsViewController.swift */,
 				D90CB67C1A73B2BD00228A1F /* AddGeotificationViewController.swift */,
 				D90CB67E1A73C4B200228A1F /* Geotification.swift */,
 				D9835AF21AA6076800D265BC /* Utilities.swift */,
 				D90CB6561A739B7A00228A1F /* Main.storyboard */,
+				6FEC05431E4138250090046A /* AddressBook */,
 				D90CB6591A739B7A00228A1F /* Images.xcassets */,
 				D90CB65B1A739B7A00228A1F /* LaunchScreen.xib */,
 				D90CB6501A739B7A00228A1F /* Supporting Files */,

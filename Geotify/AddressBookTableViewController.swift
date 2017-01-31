@@ -9,19 +9,45 @@
 import UIKit
 
 class AddressBookTableViewController: UITableViewController {
-  // create the addressBook array
-  var addressList: [Address] = []
   
-  // for dismissing the addressbook
-  @IBAction func onCancel(_ sender: AnyObject) {
-    dismiss(animated: true, completion: nil)
-  }
   
-  @IBAction func addAddressButton(_ sender: AnyObject) {
-    //ADD A POPUP
+  
+    // create the addressBook array
+    var addressList: [Address] = []
+  
+    // for dismissing the addressbook
+    @IBAction func onCancel(_ sender: AnyObject) {
+      dismiss(animated: true, completion: nil)
+    }
+  
+  @IBAction func onAddButtonPressed(_ sender: Any) {
+    let alert = UIAlertController(title: "New Address", message: "Enter an address:", preferredStyle: .alert)
     
-    let addAddress = Address()
-    addressList.append(addAddress)
+    alert.addTextField { (addressLabel) in
+      addressLabel.placeholder = "Address Label"
+    }
+    alert.addTextField { (addressLineOne) in
+      addressLineOne.placeholder = "Address Line 1"
+    }
+    alert.addTextField { (addressLineTwo) in
+      addressLineTwo.placeholder = "Address Line 2"
+    }
+    
+    // reads the things that the user enters
+    var addressArray = [String]()
+    
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+      addressArray.append((alert?.textFields![0].text)!)
+      addressArray.append((alert?.textFields![1].text)!)
+      addressArray.append((alert?.textFields![2].text)!)
+      
+      let newAddress = Address(newAddressArray: addressArray)
+      self.addressList.append(newAddress)
+      
+    }))
+
+    self.present(alert, animated: true, completion: nil)
+    
   }
   
   
