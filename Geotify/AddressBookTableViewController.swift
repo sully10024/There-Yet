@@ -13,7 +13,7 @@ class AddressBookTableViewController: UITableViewController {
   
   
     // create the addressBook array
-    var addressList: [Address] = []
+    static var addressList: [Address] = []
   
     // for dismissing the addressbook
     @IBAction func onCancel(_ sender: AnyObject) {
@@ -42,7 +42,7 @@ class AddressBookTableViewController: UITableViewController {
       addressArray.append((alert?.textFields![2].text)!)
       
       let newAddress = Address(newAddressArray: addressArray)
-      self.addressList.append(newAddress)
+      AddressBookTableViewController.addressList.append(newAddress)
       
     }))
 
