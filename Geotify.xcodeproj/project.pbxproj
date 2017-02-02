@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F749B331E3EBB4300692BC1 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F749B321E3EBB4300692BC1 /* Address.swift */; };
+		6F9DE9801E437779006257BF /* AddressViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9DE97F1E437779006257BF /* AddressViewCell.swift */; };
 		7D12FBD81E40FB2300840333 /* AddressBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12FBD71E40FB2300840333 /* AddressBookTableViewController.swift */; };
 		D90CB6531A739B7A00228A1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90CB6521A739B7A00228A1F /* AppDelegate.swift */; };
 		D90CB6581A739B7A00228A1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90CB6561A739B7A00228A1F /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		6F749B321E3EBB4300692BC1 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		6F9DE97F1E437779006257BF /* AddressViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewCell.swift; sourceTree = "<group>"; };
 		7D12FBD71E40FB2300840333 /* AddressBookTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookTableViewController.swift; sourceTree = "<group>"; };
 		D90CB64D1A739B7A00228A1F /* Geotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D90CB6511A739B7A00228A1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				6F749B321E3EBB4300692BC1 /* Address.swift */,
 				7D12FBD71E40FB2300840333 /* AddressBookTableViewController.swift */,
+				6F9DE97F1E437779006257BF /* AddressViewCell.swift */,
 			);
 			name = AddressBook;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F749B331E3EBB4300692BC1 /* Address.swift in Sources */,
+				6F9DE9801E437779006257BF /* AddressViewCell.swift in Sources */,
 				D90CB6821A73CBC600228A1F /* AddGeotificationViewController.swift in Sources */,
 				D90CB6531A739B7A00228A1F /* AppDelegate.swift in Sources */,
 				D90CB6771A73B1ED00228A1F /* GeotificationsViewController.swift in Sources */,

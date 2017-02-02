@@ -51,14 +51,16 @@ class AddressBookTableViewController: UITableViewController {
   }
   
   
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    navigationController?.hidesBarsOnSwipe = true
+  }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        navigationController?.hidesBarsOnSwipe = true // hiding the navigation bar
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,13 +72,26 @@ class AddressBookTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-      return 0
+      return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return AddressBookTableViewController.addressList.count
     }
+  
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+  {
+    
+    let cellIdentifier = "Cell"
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! AddressViewCell
+    
+    // Configure the cell...
+    cell.backgroundColor = UIColor.clear
+    cell.labelOutlet.text = AddressBookTableViewController.addressList[indexPath.row].getAddressLabel()
+    cell.lineOneOutlet.text = AddressBookTableViewController.addressList[indexPath.row].getAddressLineOne()
+    cell.lineTwoOutlet.text = AddressBookTableViewController.addressList[indexPath.row].getAddressLineTwo()
+    return cell
+  }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
