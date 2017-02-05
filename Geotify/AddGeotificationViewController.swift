@@ -20,7 +20,6 @@ class AddGeotificationViewController: UITableViewController {
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
-  var isMetricView = true
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -70,7 +69,6 @@ class AddGeotificationViewController: UITableViewController {
     mapView.removeAnnotations(mapView.annotations)
     self.performSearch()
   }
-  
   
   // method for doing a search
   func performSearch() {
