@@ -8,16 +8,12 @@
 
 import UIKit
 
-class AddressBookViewController: UIViewController {
+class AddressBookTableViewController: UITableViewController {
   
   
   
     // create the addressBook array
     static var addressList: [Address] = []
-    var lastIndexInAddressListAdded = 0
-  
-  // outlet for the tableView
-  @IBOutlet weak var tableView: UITableView!
   
     // for dismissing the addressbook
     @IBAction func onCancel(_ sender: AnyObject) {
@@ -25,33 +21,40 @@ class AddressBookViewController: UIViewController {
     }
   
   @IBAction func onAddButtonPressed(_ sender: Any) {
-    let alert = UIAlertController(title: nil, message: "Enter an address using the Standard for US and Canadian Address Formatting:", preferredStyle: .alert)
+    let alert = UIAlertController(title: "New Address", message: "Enter an address:", preferredStyle: .alert)
     
     alert.addTextField { (addressLabel) in
-      addressLabel.placeholder = "Name of Contact"
+      addressLabel.placeholder = "Address Label"
     }
     alert.addTextField { (addressLineOne) in
-      addressLineOne.placeholder = "Street Address"
+      addressLineOne.placeholder = "Address Line 1"
     }
     alert.addTextField { (addressLineTwo) in
-      addressLineTwo.placeholder = "City, State/Province, ZIP/Postal"
+      addressLineTwo.placeholder = "Address Line 2"
     }
     
     // reads the things that the user enters
     var addressArray = [String]()
     
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
       addressArray.append((alert?.textFields![0].text)!)
       addressArray.append((alert?.textFields![1].text)!)
       addressArray.append((alert?.textFields![2].text)!)
       
       let newAddress = Address(newAddressArray: addressArray)
-      AddressBookViewController.addressList.append(newAddress)
+      AddressBookTableViewController.addressList.append(newAddress)
       
     }))
 
     self.present(alert, animated: true, completion: nil)
+    
+  }
+  
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    navigationController?.hidesBarsOnSwipe = true
   }
   
     override func viewDidLoad() {
@@ -67,16 +70,16 @@ class AddressBookViewController: UIViewController {
 
     // MARK: - Table view data source
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
       return 1
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AddressBookViewController.addressList.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return AddressBookTableViewController.addressList.count
     }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
   {
     
     let cellIdentifier = "Cell"
@@ -84,10 +87,9 @@ class AddressBookViewController: UIViewController {
     
     // Configure the cell...
     cell.backgroundColor = UIColor.clear
-    cell.labelOutlet.text = AddressBookViewController.addressList[indexPath.row].getAddressLabel()
-    cell.lineOneOutlet.text = AddressBookViewController.addressList[indexPath.row].getAddressLineOne()
-    cell.lineTwoOutlet.text = AddressBookViewController.addressList[indexPath.row].getAddressLineTwo()
-    lastIndexInAddressListAdded = indexPath.row
+    cell.labelOutlet.text = AddressBookTableViewController.addressList[indexPath.row].getAddressLabel()
+    cell.lineOneOutlet.text = AddressBookTableViewController.addressList[indexPath.row].getAddressLineOne()
+    cell.lineTwoOutlet.text = AddressBookTableViewController.addressList[indexPath.row].getAddressLineTwo()
     return cell
   }
 

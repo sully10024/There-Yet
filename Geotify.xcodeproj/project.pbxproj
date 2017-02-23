@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		6F749B331E3EBB4300692BC1 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F749B321E3EBB4300692BC1 /* Address.swift */; };
 		6F9DE9801E437779006257BF /* AddressViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9DE97F1E437779006257BF /* AddressViewCell.swift */; };
-		6FFE82C21E47B880007A05AA /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FFE82C01E47B880007A05AA /* Launch Screen.storyboard */; };
-		7D12FBD81E40FB2300840333 /* AddressBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12FBD71E40FB2300840333 /* AddressBookViewController.swift */; };
+		7D12FBD81E40FB2300840333 /* AddressBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D12FBD71E40FB2300840333 /* AddressBookTableViewController.swift */; };
 		D90CB6531A739B7A00228A1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90CB6521A739B7A00228A1F /* AppDelegate.swift */; };
 		D90CB6581A739B7A00228A1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90CB6561A739B7A00228A1F /* Main.storyboard */; };
 		D90CB65A1A739B7A00228A1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D90CB6591A739B7A00228A1F /* Images.xcassets */; };
+		D90CB65D1A739B7A00228A1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D90CB65B1A739B7A00228A1F /* LaunchScreen.xib */; };
 		D90CB6731A739D4300228A1F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90CB6721A739D4300228A1F /* CoreLocation.framework */; };
 		D90CB6751A73A16700228A1F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90CB6741A73A16700228A1F /* MapKit.framework */; };
 		D90CB6771A73B1ED00228A1F /* GeotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90CB6761A73B1ED00228A1F /* GeotificationsViewController.swift */; };
@@ -26,13 +26,13 @@
 /* Begin PBXFileReference section */
 		6F749B321E3EBB4300692BC1 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		6F9DE97F1E437779006257BF /* AddressViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewCell.swift; sourceTree = "<group>"; };
-		6FFE82C11E47B880007A05AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Geotify/Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
-		7D12FBD71E40FB2300840333 /* AddressBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookViewController.swift; sourceTree = "<group>"; };
+		7D12FBD71E40FB2300840333 /* AddressBookTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookTableViewController.swift; sourceTree = "<group>"; };
 		D90CB64D1A739B7A00228A1F /* Geotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D90CB6511A739B7A00228A1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D90CB6521A739B7A00228A1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D90CB6571A739B7A00228A1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D90CB6591A739B7A00228A1F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D90CB65C1A739B7A00228A1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D90CB6721A739D4300228A1F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D90CB6741A73A16700228A1F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D90CB6761A73B1ED00228A1F /* GeotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeotificationsViewController.swift; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				6F749B321E3EBB4300692BC1 /* Address.swift */,
-				7D12FBD71E40FB2300840333 /* AddressBookViewController.swift */,
+				7D12FBD71E40FB2300840333 /* AddressBookTableViewController.swift */,
 				6F9DE97F1E437779006257BF /* AddressViewCell.swift */,
 			);
 			name = AddressBook;
@@ -93,9 +93,9 @@
 				D90CB67E1A73C4B200228A1F /* Geotification.swift */,
 				D9835AF21AA6076800D265BC /* Utilities.swift */,
 				D90CB6561A739B7A00228A1F /* Main.storyboard */,
-				6FFE82C01E47B880007A05AA /* Launch Screen.storyboard */,
 				6FEC05431E4138250090046A /* AddressBook */,
 				D90CB6591A739B7A00228A1F /* Images.xcassets */,
+				D90CB65B1A739B7A00228A1F /* LaunchScreen.xib */,
 				D90CB6501A739B7A00228A1F /* Supporting Files */,
 			);
 			path = Geotify;
@@ -158,9 +158,6 @@
 							com.apple.BackgroundModes = {
 								enabled = 0;
 							};
-							com.apple.InterAppAudio = {
-								enabled = 0;
-							};
 						};
 					};
 				};
@@ -189,8 +186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D90CB6581A739B7A00228A1F /* Main.storyboard in Resources */,
+				D90CB65D1A739B7A00228A1F /* LaunchScreen.xib in Resources */,
 				D9C1AF6C1A77CD6C00A06B2F /* TestLocations.gpx in Resources */,
-				6FFE82C21E47B880007A05AA /* Launch Screen.storyboard in Resources */,
 				D90CB65A1A739B7A00228A1F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,7 +204,7 @@
 				D90CB6821A73CBC600228A1F /* AddGeotificationViewController.swift in Sources */,
 				D90CB6531A739B7A00228A1F /* AppDelegate.swift in Sources */,
 				D90CB6771A73B1ED00228A1F /* GeotificationsViewController.swift in Sources */,
-				7D12FBD81E40FB2300840333 /* AddressBookViewController.swift in Sources */,
+				7D12FBD81E40FB2300840333 /* AddressBookTableViewController.swift in Sources */,
 				D9835AF31AA6076800D265BC /* Utilities.swift in Sources */,
 				D90CB6801A73C9E200228A1F /* Geotification.swift in Sources */,
 			);
@@ -216,21 +213,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6FFE82C01E47B880007A05AA /* Launch Screen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6FFE82C11E47B880007A05AA /* Base */,
-			);
-			name = "Launch Screen.storyboard";
-			path = ..;
-			sourceTree = "<group>";
-		};
 		D90CB6561A739B7A00228A1F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D90CB6571A739B7A00228A1F /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D90CB65B1A739B7A00228A1F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D90CB65C1A739B7A00228A1F /* Base */,
+			);
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -329,9 +325,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9Q67Y9479B;
 				INFOPLIST_FILE = Geotify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Clay.ThereYet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ThereYet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -347,9 +343,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9Q67Y9479B;
 				INFOPLIST_FILE = Geotify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Clay.ThereYet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ThereYet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
