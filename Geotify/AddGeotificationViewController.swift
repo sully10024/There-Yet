@@ -14,17 +14,24 @@ class AddGeotificationViewController: UITableViewController {
   @IBOutlet weak var radiusSlider: UISlider!
   @IBOutlet weak var noteTextField: UITextField!
   @IBOutlet weak var mapView: MKMapView!
-  @IBOutlet weak var searchBar: UITextField!
   @IBOutlet weak var searchText: UITextField!
   @IBOutlet weak var radiusLabel: UILabel!
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
   var isMetricView = true
+  var passedAddress: String?
 
   override func viewDidLoad() {
     super.viewDidLoad()
     addButton.isEnabled = false
+  }
+  
+  //FIX THIS METHOD, IT ISN'T WORKING
+  func loadFromAddressBook() {
+    super.viewDidLoad()
+    searchText.text = passedAddress
+    performSearch()
   }
   
   @IBAction func radiusSliderDidChange(_ sender: Any) {

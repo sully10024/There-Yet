@@ -92,6 +92,21 @@ class AddressBookTableViewController: UITableViewController {
     cell.lineTwoOutlet.text = AddressBookTableViewController.addressList[indexPath.row].getAddressLineTwo()
     return cell
   }
+  
+  
+  // Pass the address to the search bar
+  override func prepare(for segue: UIStoryboardSegue,sender: Any?)
+  {
+    if segue.identifier == "searchFromAddressBook"
+    {
+      if let indexPath = tableView.indexPathForSelectedRow
+      {
+        let destinationController = segue.destination as! AddGeotificationViewController
+        destinationController.passedAddress = AddressBookTableViewController.addressList[indexPath.row].getFullAddressAsString()
+        AddGeotificationViewController.loadFromAddressBook(AddGeotificationViewController)
+      }
+    }
+  }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
