@@ -1,11 +1,15 @@
 import UIKit
 import MapKit
 import CoreLocation
+import AVFoundation
 
 protocol AddGeotificationsViewControllerDelegate {
   func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D,
     radius: Double, identifier: String, note: String)
 }
+
+var audioPlayer:AVAudioPlayer!
+var audioFilePath = Bundle.main.path(forResource: "sanic", ofType: "mp3")
 
 class AddGeotificationViewController: UITableViewController {
 
@@ -17,13 +21,11 @@ class AddGeotificationViewController: UITableViewController {
   @IBOutlet weak var searchText: UITextField!
   @IBOutlet weak var radiusLabel: UILabel!
   @IBOutlet weak var unitsSwitcher: UISegmentedControl!
+  @IBOutlet weak var sanicPic: UIImageView!
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
-  var isMetricView = true
-  
-  // m = 0, km = 1, ft = 2, mi = 3
-  var unitsLabelOptions: [String] = ["m", "km", "ft", "mi"]
+  var isMetric = true
   
   let defaults = UserDefaults.standard
 
@@ -35,27 +37,29 @@ class AddGeotificationViewController: UITableViewController {
   @IBAction func unitsSwitcherDidChange(_ sender: Any)
   {
     if unitsSwitcher.selectedSegmentIndex == 0 {
-      isMetricView = true
+      isMetric = true
+      radiusSlider.minimumValue = 50
+      radiusSlider.maximumValue = 5000
+      
+      radiusSlider.value = radiusSlider.minimumValue
+      updateRadiusLabel()
+      
+      stopSanic()
     }
     
     if unitsSwitcher.selectedSegmentIndex == 1 {
-      isMetricView = false
+      isMetric = false
+      radiusSlider.minimumValue = 60.96
+      radiusSlider.maximumValue = 4828.03
+      
+      radiusSlider.value = radiusSlider.minimumValue
+      updateRadiusLabel()
+      startSanic()
     }
   }
   
-  
-  // this function looks for a change in the radius slider
-  // when there is a change, it then updates the text beside the slider
   @IBAction func radiusSliderDidChange(_ sender: Any) {
-    let sliderValueAsMetersInt = Int(radiusSlider.value)
-    if sliderValueAsMetersInt < 1000 {
-      radiusLabel.text = "\(sliderValueAsMetersInt) m"
-    } else {
-      radiusLabel.text = (NSString(format: "%.1f", (radiusSlider.value)/1000) as String) + " km"
-    }
-    
-    //radiusLabel.text = (NSString(format: "%.1f", radiusSlider.value) as String) + " m"
-    //radiusLabel.text = "\(sliderValueAsInt)"
+    updateRadiusLabel()
   }
   
   @IBAction func textFieldEditingChanged(sender: UITextField) {
@@ -90,6 +94,47 @@ class AddGeotificationViewController: UITableViewController {
     self.performSearch()
   }
   
+  func updateRadiusLabel()
+  {
+    if isMetric {
+      if radiusSlider.value < 1000 {
+        radiusLabel.text = "\(Int(radiusSlider.value)) m"
+      } else {
+        radiusLabel.text = (NSString(format: "%.1f", (radiusSlider.value)/1000) as String) + " km"
+      }
+      
+    } else if !isMetric {
+      let sliderValueAsFeet = radiusSlider.value * 3.28084
+      if sliderValueAsFeet < 5280 {
+        radiusLabel.text = "\(Int(sliderValueAsFeet)) ft"
+      } else {
+        radiusLabel.text = (NSString(format: "%.1f", (sliderValueAsFeet)/5280) as String) + " mi"
+      }
+    }
+  }
+  
+  func startSanic() {
+    
+    if audioFilePath != nil {
+      
+      let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
+      do {
+        try audioPlayer = AVAudioPlayer(contentsOf: audioFileUrl)
+        audioPlayer.play()
+      } catch {
+        print("oops")
+      }
+    }
+    
+    sanicPic.isHidden = false
+    noteTextField.placeholder = "gotTA GO AFST!!!"
+  }
+  
+  func stopSanic() {
+    audioPlayer.stop()
+    sanicPic.isHidden = true
+    noteTextField.placeholder = "Reminder note to be shown"
+  }
   
   // method for doing a search
   func performSearch() {
