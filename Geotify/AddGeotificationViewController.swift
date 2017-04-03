@@ -16,24 +16,36 @@ class AddGeotificationViewController: UITableViewController {
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var searchText: UITextField!
   @IBOutlet weak var radiusLabel: UILabel!
+  @IBOutlet weak var unitsSwitcher: UISegmentedControl!
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
   var isMetricView = true
-  var passedAddress: String?
+  
+  // m = 0, km = 1, ft = 2, mi = 3
+  var unitsLabelOptions: [String] = ["m", "km", "ft", "mi"]
+  
+  let defaults = UserDefaults.standard
 
   override func viewDidLoad() {
     super.viewDidLoad()
     addButton.isEnabled = false
   }
   
-  //FIX THIS METHOD, IT ISN'T WORKING
-  func loadFromAddressBook() {
-    super.viewDidLoad()
-    searchText.text = passedAddress
-    performSearch()
+  @IBAction func unitsSwitcherDidChange(_ sender: Any)
+  {
+    if unitsSwitcher.selectedSegmentIndex == 0 {
+      isMetricView = true
+    }
+    
+    if unitsSwitcher.selectedSegmentIndex == 1 {
+      isMetricView = false
+    }
   }
   
+  
+  // this function looks for a change in the radius slider
+  // when there is a change, it then updates the text beside the slider
   @IBAction func radiusSliderDidChange(_ sender: Any) {
     let sliderValueAsMetersInt = Int(radiusSlider.value)
     if sliderValueAsMetersInt < 1000 {
