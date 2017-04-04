@@ -22,6 +22,7 @@ class AddGeotificationViewController: UITableViewController {
   @IBOutlet weak var radiusLabel: UILabel!
   @IBOutlet weak var unitsSwitcher: UISegmentedControl!
   @IBOutlet weak var sanicPic: UIImageView!
+    @IBOutlet weak var secretNoteButton: UIButton!
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
@@ -89,10 +90,11 @@ class AddGeotificationViewController: UITableViewController {
   }
   
   @IBAction func textFieldDidReturn(_ sender: AnyObject) {
-    _ = sender.resignFirstResponder()
-    mapView.removeAnnotations(mapView.annotations)
-    self.performSearch()
-  }
+        _ = sender.resignFirstResponder()
+        mapView.removeAnnotations(mapView.annotations)
+        self.performSearch()
+    }
+    
   
   func updateRadiusLabel()
   {
@@ -127,13 +129,15 @@ class AddGeotificationViewController: UITableViewController {
     }
     
     sanicPic.isHidden = false
-    noteTextField.placeholder = "gotTA GO AFST!!!"
+    noteTextField.placeholder = "Gotta go fast"
+    secretNoteButton.isEnabled = true
   }
   
   func stopSanic() {
     audioPlayer.stop()
     sanicPic.isHidden = true
     noteTextField.placeholder = "Reminder note to be shown"
+    secretNoteButton.isEnabled = false
   }
   
   // method for doing a search
