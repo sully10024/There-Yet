@@ -9,7 +9,9 @@ protocol AddGeotificationsViewControllerDelegate {
 }
 
 var audioPlayer:AVAudioPlayer!
-var audioFilePath = Bundle.main.path(forResource: "sanic", ofType: "mp3")
+var audioFilePath = Bundle.main.path(forResource: "sanictheme", ofType: "mp3")
+let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
+
 
 class AddGeotificationViewController: UITableViewController {
 
@@ -22,7 +24,6 @@ class AddGeotificationViewController: UITableViewController {
   @IBOutlet weak var radiusLabel: UILabel!
   @IBOutlet weak var unitsSwitcher: UISegmentedControl!
   @IBOutlet weak var sanicPic: UIImageView!
-    @IBOutlet weak var secretNoteButton: UIButton!
   
   var matchingItems: [MKMapItem] = [MKMapItem]()
   var delegate: AddGeotificationsViewControllerDelegate?
@@ -33,6 +34,12 @@ class AddGeotificationViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     addButton.isEnabled = false
+    
+    do {
+      try audioPlayer = AVAudioPlayer(contentsOf: audioFileUrl)
+    } catch {
+      print("oops")
+    }
   }
   
   @IBAction func unitsSwitcherDidChange(_ sender: Any)
@@ -116,28 +123,15 @@ class AddGeotificationViewController: UITableViewController {
   }
   
   func startSanic() {
-    
-    if audioFilePath != nil {
-      
-      let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
-      do {
-        try audioPlayer = AVAudioPlayer(contentsOf: audioFileUrl)
-        audioPlayer.play()
-      } catch {
-        print("oops")
-      }
-    }
-    
     sanicPic.isHidden = false
     noteTextField.placeholder = "Gotta go fast"
-    secretNoteButton.isEnabled = true
+    audioPlayer.play()
   }
   
   func stopSanic() {
-    audioPlayer.stop()
     sanicPic.isHidden = true
     noteTextField.placeholder = "Reminder note to be shown"
-    secretNoteButton.isEnabled = false
+    audioPlayer.stop()
   }
   
   // method for doing a search

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F4A338D1E93066200D1DB19 /* sanic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6F4A338C1E93066200D1DB19 /* sanic.mp3 */; };
-		6F4A338F1E930C3700D1DB19 /* sanichedgehog.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4A338E1E930C3700D1DB19 /* sanichedgehog.png */; };
+		6FE8BBCA1E9BC8F800970DBF /* sanic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE8BBC81E9BC8F800970DBF /* sanic.png */; };
+		6FE8BBCB1E9BC8F800970DBF /* sanictheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FE8BBC91E9BC8F800970DBF /* sanictheme.mp3 */; };
 		D90CB6531A739B7A00228A1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90CB6521A739B7A00228A1F /* AppDelegate.swift */; };
 		D90CB6581A739B7A00228A1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D90CB6561A739B7A00228A1F /* Main.storyboard */; };
 		D90CB65A1A739B7A00228A1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D90CB6591A739B7A00228A1F /* Images.xcassets */; };
@@ -23,8 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6F4A338C1E93066200D1DB19 /* sanic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sanic.mp3; path = ../../../Downloads/sanic.mp3; sourceTree = "<group>"; };
-		6F4A338E1E930C3700D1DB19 /* sanichedgehog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sanichedgehog.png; path = ../../../Downloads/sanichedgehog.png; sourceTree = "<group>"; };
+		6FE8BBC81E9BC8F800970DBF /* sanic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sanic.png; path = "Secret Stuff/sanic.png"; sourceTree = "<group>"; };
+		6FE8BBC91E9BC8F800970DBF /* sanictheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sanictheme.mp3; path = "Secret Stuff/sanictheme.mp3"; sourceTree = "<group>"; };
 		D90CB64D1A739B7A00228A1F /* Geotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D90CB6511A739B7A00228A1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D90CB6521A739B7A00228A1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6FE8BBCC1E9BC92100970DBF /* SECRET STUFF */ = {
+			isa = PBXGroup;
+			children = (
+				6FE8BBC81E9BC8F800970DBF /* sanic.png */,
+				6FE8BBC91E9BC8F800970DBF /* sanictheme.mp3 */,
+			);
+			name = "SECRET STUFF";
+			sourceTree = "<group>";
+		};
 		D90CB6441A739B7A00228A1F = {
 			isa = PBXGroup;
 			children = (
@@ -91,10 +100,9 @@
 		D90CB6501A739B7A00228A1F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6F4A338E1E930C3700D1DB19 /* sanichedgehog.png */,
-				6F4A338C1E93066200D1DB19 /* sanic.mp3 */,
 				D9C1AF6B1A77CD6C00A06B2F /* TestLocations.gpx */,
 				D90CB6511A739B7A00228A1F /* Info.plist */,
+				6FE8BBCC1E9BC92100970DBF /* SECRET STUFF */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -175,11 +183,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D90CB6581A739B7A00228A1F /* Main.storyboard in Resources */,
+				6FE8BBCB1E9BC8F800970DBF /* sanictheme.mp3 in Resources */,
 				D90CB65D1A739B7A00228A1F /* LaunchScreen.xib in Resources */,
+				6FE8BBCA1E9BC8F800970DBF /* sanic.png in Resources */,
 				D9C1AF6C1A77CD6C00A06B2F /* TestLocations.gpx in Resources */,
 				D90CB65A1A739B7A00228A1F /* Images.xcassets in Resources */,
-				6F4A338D1E93066200D1DB19 /* sanic.mp3 in Resources */,
-				6F4A338F1E930C3700D1DB19 /* sanichedgehog.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
