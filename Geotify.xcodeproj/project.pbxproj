@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F9E2D4C1E9D5DE500A5C0FB /* To-Do in Resources */ = {isa = PBXBuildFile; fileRef = 6F9E2D4B1E9D5DE500A5C0FB /* To-Do */; };
 		6FE8BBCA1E9BC8F800970DBF /* sanic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE8BBC81E9BC8F800970DBF /* sanic.png */; };
 		6FE8BBCB1E9BC8F800970DBF /* sanictheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FE8BBC91E9BC8F800970DBF /* sanictheme.mp3 */; };
 		D90CB6531A739B7A00228A1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90CB6521A739B7A00228A1F /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F9E2D4B1E9D5DE500A5C0FB /* To-Do */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "To-Do"; path = "Geotify/To-Do"; sourceTree = "<group>"; };
 		6FE8BBC81E9BC8F800970DBF /* sanic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sanic.png; path = "Secret Stuff/sanic.png"; sourceTree = "<group>"; };
 		6FE8BBC91E9BC8F800970DBF /* sanictheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sanictheme.mp3; path = "Secret Stuff/sanictheme.mp3"; sourceTree = "<group>"; };
 		D90CB64D1A739B7A00228A1F /* Geotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				D90CB64F1A739B7A00228A1F /* Geotify */,
 				D9AEA6FE1A793D570020A0D4 /* Frameworks */,
 				D90CB64E1A739B7A00228A1F /* Products */,
+				6F9E2D4B1E9D5DE500A5C0FB /* To-Do */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				D90CB65D1A739B7A00228A1F /* LaunchScreen.xib in Resources */,
 				6FE8BBCA1E9BC8F800970DBF /* sanic.png in Resources */,
 				D9C1AF6C1A77CD6C00A06B2F /* TestLocations.gpx in Resources */,
+				6F9E2D4C1E9D5DE500A5C0FB /* To-Do in Resources */,
 				D90CB65A1A739B7A00228A1F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
