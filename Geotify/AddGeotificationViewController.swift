@@ -8,38 +8,30 @@ protocol AddGeotificationsViewControllerDelegate {
     radius: Double, identifier: String, note: String)
 }
 
-var audioPlayer:AVAudioPlayer!
-var audioFilePath = Bundle.main.path(forResource: "sanictheme", ofType: "mp3")
-let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
-
 
 class AddGeotificationViewController: UITableViewController {
 
-  @IBOutlet var addButton: UIBarButtonItem!
-  @IBOutlet var zoomButton: UIBarButtonItem!
-  @IBOutlet weak var radiusSlider: UISlider!
-  @IBOutlet weak var noteTextField: UITextField!
-  @IBOutlet weak var mapView: MKMapView!
-  @IBOutlet weak var searchText: UITextField!
-  @IBOutlet weak var radiusLabel: UILabel!
-  @IBOutlet weak var unitsSwitcher: UISegmentedControl!
-  @IBOutlet weak var sanicPic: UIImageView!
+    @IBOutlet var addButton: UIBarButtonItem!
+    @IBOutlet var zoomButton: UIBarButtonItem!
+    @IBOutlet weak var radiusSlider:  UISlider!
+    @IBOutlet weak var noteTextField: UITextField!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var searchText: UITextField!
+    @IBOutlet weak var radiusLabel: UILabel!
+    @IBOutlet weak var unitsSwitcher: UISegmentedControl!
+    @IBOutlet weak var recentSearchesTableView: UITableView!
+    @IBOutlet weak var recentSearchesScrollView: UIScrollView!
   
-  var matchingItems: [MKMapItem] = [MKMapItem]()
-  var delegate: AddGeotificationsViewControllerDelegate?
-  var isMetric = true
-  
-  let defaults = UserDefaults.standard
+    var matchingItems: [MKMapItem] = [MKMapItem]()
+    var delegate: AddGeotificationsViewControllerDelegate?
+    var isMetric = true
+    
+    var recentSearchesArray: [String] = []
+    var lastSearch = ""
 
   override func viewDidLoad() {
     super.viewDidLoad()
     addButton.isEnabled = false
-    
-    do {
-      try audioPlayer = AVAudioPlayer(contentsOf: audioFileUrl)
-    } catch {
-      print("oops")
-    }
   }
   
   @IBAction func unitsSwitcherDidChange(_ sender: Any)
@@ -51,8 +43,6 @@ class AddGeotificationViewController: UITableViewController {
       
       radiusSlider.value = radiusSlider.minimumValue
       updateRadiusLabel()
-      
-      stopSanic()
     }
     
     if unitsSwitcher.selectedSegmentIndex == 1 {
@@ -62,7 +52,6 @@ class AddGeotificationViewController: UITableViewController {
       
       radiusSlider.value = radiusSlider.minimumValue
       updateRadiusLabel()
-      startSanic()
     }
   }
   
@@ -89,20 +78,51 @@ class AddGeotificationViewController: UITableViewController {
   @IBAction func onZoomToCurrentLocation(_ sender: Any) {
     mapView.zoomToUserLocation()
   }
-  
-  // clears the search when the user starts editing in the searchBar
-  @IBAction func onClearMapSearch(_ sender: Any) {
-    matchingItems.removeAll()
-    mapView.removeAnnotations(mapView.annotations)
-  }
-  
-  @IBAction func textFieldDidReturn(_ sender: AnyObject) {
-        _ = sender.resignFirstResponder()
+    
+    @IBAction func searchFieldDidBeginEditing(_ sender: Any)
+    {
+        matchingItems.removeAll()
         mapView.removeAnnotations(mapView.annotations)
-        self.performSearch()
+        
+        recentSearchesScrollView.isHidden = false
     }
     
+    // Function for saving recent searches to long term storage, and removing the oldest
+    func writeRecentSearchArray()
+    {
+        let defaults = UserDefaults.standard
+        defaults.set(recentSearchesArray, forKey: "SavedRecentSearchesArray")
+    }
+    
+    // Function for retreiving recent searches array from
+    func readRecentSearchArray()
+    {
+        let defaults = UserDefaults.standard
+        recentSearchesArray = defaults.stringArray(forKey: "SavedRecentSearchesArray")  ?? [String]()
+    }
+    
+    // Function for checking how many items are in the recent searches array and removing the oldest one if necessary
+    func checkRecentSearchArray()
+    {
+        let defaults = UserDefaults.standard
+        var recentSearchesCheckArray = defaults.stringArray(forKey: "SavedRecentSearchesArray") ?? [String]()
+        if (recentSearchesCheckArray.count > 5)
+        {
+            recentSearchesCheckArray.removeLast()
+            defaults.set(recentSearchesCheckArray, forKey: "SavedRecentSearchesArray")
+        }
+        readRecentSearchArray()
+    }
   
+    // Add a search to the array after doing a search in the searchBar
+    func addRecentSearchQueryToRecentSearchArray()
+    {
+        readRecentSearchArray()
+        checkRecentSearchArray()
+        recentSearchesArray.insert(lastSearch, at: 0)
+        writeRecentSearchArray()
+    }
+    
   func updateRadiusLabel()
   {
     if isMetric {
@@ -121,18 +141,22 @@ class AddGeotificationViewController: UITableViewController {
       }
     }
   }
-  
-  func startSanic() {
-    sanicPic.isHidden = false
-    noteTextField.placeholder = "Gotta go fast"
-    audioPlayer.play()
-  }
-  
-  func stopSanic() {
-    sanicPic.isHidden = true
-    noteTextField.placeholder = "Reminder note to be shown"
-    audioPlayer.stop()
-  }
+    
+    @IBAction func textFieldDidReturn(_ sender: AnyObject) {
+        _ = sender.resignFirstResponder()
+        mapView.removeAnnotations(mapView.annotations)
+        recentSearchesScrollView.isHidden = true
+        
+        lastSearch = searchText.text!
+        checkRecentSearchArray()
+        
+        addRecentSearchQueryToRecentSearchArray()
+        
+        print("DEBUGGING FOR RECENT SEARCH ARRAY")
+        print(recentSearchesArray)
+        
+        self.performSearch()
+    }
   
   // method for doing a search
   func performSearch() {
