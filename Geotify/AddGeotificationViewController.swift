@@ -19,8 +19,6 @@ class AddGeotificationViewController: UITableViewController {
     @IBOutlet weak var searchText: UITextField!
     @IBOutlet weak var radiusLabel: UILabel!
     @IBOutlet weak var unitsSwitcher: UISegmentedControl!
-    @IBOutlet weak var recentSearchesTableView: UITableView!
-    @IBOutlet weak var recentSearchesScrollView: UIScrollView!
   
     var matchingItems: [MKMapItem] = [MKMapItem]()
     var delegate: AddGeotificationsViewControllerDelegate?
@@ -32,6 +30,8 @@ class AddGeotificationViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     addButton.isEnabled = false
+    
+    readRecentSearchArray()
   }
   
   @IBAction func unitsSwitcherDidChange(_ sender: Any)
@@ -83,8 +83,6 @@ class AddGeotificationViewController: UITableViewController {
     {
         matchingItems.removeAll()
         mapView.removeAnnotations(mapView.annotations)
-        
-        recentSearchesScrollView.isHidden = false
     }
     
     // Function for saving recent searches to long term storage, and removing the oldest
@@ -100,28 +98,16 @@ class AddGeotificationViewController: UITableViewController {
         let defaults = UserDefaults.standard
         recentSearchesArray = defaults.stringArray(forKey: "SavedRecentSearchesArray")  ?? [String]()
     }
-    
-    // Function for checking how many items are in the recent searches array and removing the oldest one if necessary
-    func checkRecentSearchArray()
-    {
-        let defaults = UserDefaults.standard
-        var recentSearchesCheckArray = defaults.stringArray(forKey: "SavedRecentSearchesArray") ?? [String]()
-        if (recentSearchesCheckArray.count > 5)
-        {
-            recentSearchesCheckArray.removeLast()
-            defaults.set(recentSearchesCheckArray, forKey: "SavedRecentSearchesArray")
-        }
-        readRecentSearchArray()
-    }
   
     // Add a search to the array after doing a search in the searchBar
     func addRecentSearchQueryToRecentSearchArray()
     {
         readRecentSearchArray()
-        checkRecentSearchArray()
         recentSearchesArray.insert(lastSearch, at: 0)
         writeRecentSearchArray()
     }
+  
+  
     
   func updateRadiusLabel()
   {
@@ -145,18 +131,25 @@ class AddGeotificationViewController: UITableViewController {
     @IBAction func textFieldDidReturn(_ sender: AnyObject) {
         _ = sender.resignFirstResponder()
         mapView.removeAnnotations(mapView.annotations)
-        recentSearchesScrollView.isHidden = true
-        
+
         lastSearch = searchText.text!
-        checkRecentSearchArray()
+        readRecentSearchArray()
         
-        addRecentSearchQueryToRecentSearchArray()
+        while recentSearchesArray.count >= 5
+        {
+            recentSearchesArray.removeLast()
+        }
+        
+        recentSearchesArray.insert(lastSearch, at: 0)
+        writeRecentSearchArray()
         
         print("DEBUGGING FOR RECENT SEARCH ARRAY")
         print(recentSearchesArray)
         
         self.performSearch()
     }
+  
+
   
   // method for doing a search
   func performSearch() {

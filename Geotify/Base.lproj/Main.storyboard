@@ -115,27 +115,6 @@
                                 <action selector="textFieldDidReturn:" destination="WOc-Kh-RdY" eventType="editingDidEndOnExit" id="HdP-UH-Cw1"/>
                             </connections>
                         </textField>
-                        <scrollView key="tableFooterView" hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="99g-EM-hc1">
-                            <rect key="frame" x="0.0" y="418" width="375" height="186"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZU8-8Q-Cxh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="186"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <prototypes>
-                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recentSearchesCell" id="b8j-je-ack">
-                                            <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b8j-je-ack" id="DJs-1U-VTy">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </tableViewCellContentView>
-                                        </tableViewCell>
-                                    </prototypes>
-                                </tableView>
-                            </subviews>
-                        </scrollView>
                         <sections>
                             <tableViewSection id="59y-9K-kDZ">
                                 <cells>
@@ -297,8 +276,6 @@
                         <outlet property="noteTextField" destination="USr-pF-VnD" id="WbB-ib-wAX"/>
                         <outlet property="radiusLabel" destination="yHE-PU-WbD" id="2CE-yT-2vW"/>
                         <outlet property="radiusSlider" destination="Cnk-0s-YKj" id="cku-Ea-lam"/>
-                        <outlet property="recentSearchesScrollView" destination="99g-EM-hc1" id="Wl2-Gt-6Rh"/>
-                        <outlet property="recentSearchesTableView" destination="ZU8-8Q-Cxh" id="hC5-70-sIE"/>
                         <outlet property="searchText" destination="DfM-Br-rgY" id="Gu6-cx-6bw"/>
                         <outlet property="unitsSwitcher" destination="fZy-GU-inS" id="vVd-Eg-eYh"/>
                         <outlet property="zoomButton" destination="IOi-hP-hD4" id="9qv-3e-w8u"/>
