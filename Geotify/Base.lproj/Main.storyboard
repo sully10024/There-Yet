@@ -19,7 +19,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.094117647058823528" green="0.69019607843137254" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.85514622926712036" green="0.40063890814781189" blue="0.41404715180397034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.96910983319999999" green="0.9803802371" blue="0.98038893940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="LYI-dq-R4y" kind="relationship" relationship="rootViewController" id="LwB-ov-x3m"/>
@@ -32,7 +35,7 @@
         <!--My Geofence Notification-->
         <scene sceneID="QSg-Wp-O1B">
             <objects>
-                <viewController id="LYI-dq-R4y" customClass="GeotificationsViewController" customModule="Geotify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Geofence Notification" id="LYI-dq-R4y" customClass="GeotificationsViewController" customModule="Geotify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kGy-dK-Sza"/>
                         <viewControllerLayoutGuide type="bottom" id="hBM-ll-xSu"/>
@@ -43,7 +46,7 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fP9-ox-VWa">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="tintColor" red="0.22411707040000001" green="0.73074060679999997" blue="0.4565019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.85514622929999995" green="0.40063890810000002" blue="0.41404715180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="LYI-dq-R4y" id="Yn5-hw-yjr"/>
                                 </connections>
@@ -59,11 +62,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Geofence Notification" id="dS8-nZ-3oV">
                         <barButtonItem key="leftBarButtonItem" image="CurrentLocation" id="FIG-L9-xbZ">
+                            <color key="tintColor" red="0.96910983324050903" green="0.98038023710250854" blue="0.98038893938064575" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="zoomToCurrentLocationWithSender:" destination="LYI-dq-R4y" id="e7K-H3-omj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8yu-XQ-amA">
+                            <color key="tintColor" red="0.96910983319999999" green="0.9803802371" blue="0.98038893940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="L8L-Ym-BpE" kind="presentation" identifier="addGeotification" id="pyE-bK-gDv"/>
                             </connections>
@@ -85,7 +90,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.093308731749999999" green="0.68869601349999998" blue="0.36501130570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.85514622929999995" green="0.40063890810000002" blue="0.41404715180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="WOc-Kh-RdY" kind="relationship" relationship="rootViewController" id="Va6-na-dP4"/>
@@ -109,7 +114,8 @@
                         <textField key="tableHeaderView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="DfM-Br-rgY">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <nil key="textColor"/>
+                            <color key="tintColor" red="0.85514622929999995" green="0.40063890810000002" blue="0.41404715180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
                             <connections>
@@ -127,29 +133,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="444"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frU-qC-iGG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="444"/>
-                                                    <color key="tintColor" red="0.21880209445953369" green="0.72681838274002075" blue="0.45250892639160156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frU-qC-iGG">
+                                                    <rect key="frame" x="0.0" y="-94" width="375" height="538"/>
+                                                    <color key="tintColor" red="0.85514622929999995" green="0.40063890810000002" blue="0.41404715180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <gestureRecognizers/>
                                                     <connections>
                                                         <outlet property="delegate" destination="KFK-uw-HxV" id="H8K-Km-M1o"/>
                                                     </connections>
                                                 </mapView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crosshairs" translatesAutoresizingMaskIntoConstraints="NO" id="hot-1c-MQn">
-                                                    <rect key="frame" x="164" y="200" width="46" height="45"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crosshairs" translatesAutoresizingMaskIntoConstraints="NO" id="m2R-Ts-LkR">
+                                                    <rect key="frame" x="170" y="204.5" width="35" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="C0N-tL-XHB"/>
-                                                        <constraint firstAttribute="width" constant="46" id="fmg-VJ-iTV"/>
+                                                        <constraint firstAttribute="width" constant="35" id="2fo-47-6e4"/>
+                                                        <constraint firstAttribute="height" constant="35" id="cgs-ME-iDU"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="frU-qC-iGG" firstAttribute="leading" secondItem="G8a-9u-bod" secondAttribute="leading" id="3Gb-2O-8zd"/>
-                                                <constraint firstAttribute="bottom" secondItem="frU-qC-iGG" secondAttribute="bottom" id="Aba-qR-33D"/>
-                                                <constraint firstItem="frU-qC-iGG" firstAttribute="centerY" secondItem="hot-1c-MQn" secondAttribute="centerY" id="Ftw-rX-mc7"/>
-                                                <constraint firstAttribute="trailing" secondItem="frU-qC-iGG" secondAttribute="trailing" id="Kgt-z9-WQg"/>
-                                                <constraint firstItem="frU-qC-iGG" firstAttribute="centerX" secondItem="hot-1c-MQn" secondAttribute="centerX" id="u37-2U-wXO"/>
-                                                <constraint firstItem="frU-qC-iGG" firstAttribute="top" secondItem="G8a-9u-bod" secondAttribute="top" id="vu1-KN-Z6V"/>
+                                                <constraint firstAttribute="bottom" secondItem="frU-qC-iGG" secondAttribute="bottom" id="4ME-j8-V3b"/>
+                                                <constraint firstAttribute="trailing" secondItem="frU-qC-iGG" secondAttribute="trailing" id="5QP-P9-i15"/>
+                                                <constraint firstItem="frU-qC-iGG" firstAttribute="centerY" secondItem="m2R-Ts-LkR" secondAttribute="centerY" id="Thg-pP-lce"/>
+                                                <constraint firstItem="frU-qC-iGG" firstAttribute="centerX" secondItem="m2R-Ts-LkR" secondAttribute="centerX" id="auZ-zf-q6b"/>
+                                                <constraint firstItem="frU-qC-iGG" firstAttribute="top" secondItem="G8a-9u-bod" secondAttribute="top" id="bOW-iC-p66"/>
+                                                <constraint firstItem="frU-qC-iGG" firstAttribute="leading" secondItem="G8a-9u-bod" secondAttribute="leading" id="ucM-x3-2Ka"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -174,7 +180,7 @@
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="50" maxValue="5000" translatesAutoresizingMaskIntoConstraints="NO" id="Cnk-0s-YKj">
                                                             <rect key="frame" x="56" y="1" width="249" height="31"/>
-                                                            <color key="tintColor" red="0.22411707040000001" green="0.73074060679999997" blue="0.4565019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="tintColor" red="0.85514622929999995" green="0.40063890810000002" blue="0.41404715180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="radiusSliderDidChange:" destination="WOc-Kh-RdY" eventType="valueChanged" id="V7V-zY-fwj"/>
                                                             </connections>
@@ -211,7 +217,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gdi-fi-6G7">
-                                                    <rect key="frame" x="8" y="12" width="232.5" height="19"/>
+                                                    <rect key="frame" x="8" y="12" width="359" height="19"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJC-Ar-YWX">
                                                             <rect key="frame" x="0.0" y="0.0" width="37" height="19"/>
@@ -223,7 +229,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="left" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Reminder note to be shown" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="USr-pF-VnD">
-                                                            <rect key="frame" x="41" y="0.0" width="191.5" height="19"/>
+                                                            <rect key="frame" x="41" y="0.0" width="318" height="19"/>
+                                                            <color key="tintColor" red="0.85514622929999995" green="0.40063890810000002" blue="0.41404715180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             <connections>
@@ -235,6 +243,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="gdi-fi-6G7" firstAttribute="leading" secondItem="U6I-iK-BTi" secondAttribute="leadingMargin" id="AJZ-Mp-Ob6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gdi-fi-6G7" secondAttribute="trailing" id="SiE-Zs-gWJ"/>
                                                 <constraint firstItem="gdi-fi-6G7" firstAttribute="centerY" secondItem="U6I-iK-BTi" secondAttribute="centerY" id="x6l-Av-cxA"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -249,6 +258,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="cjD-eh-hQf">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="xDC-Ux-qv5">
+                            <color key="tintColor" red="0.96910983319999999" green="0.9803802371" blue="0.98038893940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="onCancelWithSender:" destination="WOc-Kh-RdY" id="fR4-Ya-HVp"/>
                             </connections>
@@ -260,18 +270,20 @@
                                 <segment title="Meters"/>
                                 <segment title="Feet"/>
                             </segments>
-                            <color key="tintColor" red="0.96364870343247622" green="1" blue="0.96393272620992299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.96910983319999999" green="0.9803802371" blue="0.98038893940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="unitsSwitcherDidChange:" destination="WOc-Kh-RdY" eventType="valueChanged" id="ihK-DS-C65"/>
                             </connections>
                         </segmentedControl>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="done" id="Zqz-jV-nhQ">
+                                <color key="tintColor" red="0.96910983319999999" green="0.9803802371" blue="0.98038893940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="onAddWithSender:" destination="WOc-Kh-RdY" id="o75-ar-PF3"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="CurrentLocation" id="IOi-hP-hD4">
+                                <color key="tintColor" red="0.96910983319999999" green="0.9803802371" blue="0.98038893940000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="onZoomToCurrentLocation:" destination="WOc-Kh-RdY" id="jBg-uG-Ob0"/>
                                 </connections>
@@ -298,5 +310,5 @@
         <image name="CurrentLocation" width="15" height="15"/>
         <image name="crosshairs" width="715" height="720"/>
     </resources>
-    <color key="tintColor" red="0.71777474880218506" green="0.79802733659744263" blue="0.89946991205215454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.88379162550000001" green="0.98374229670000002" blue="0.98947316409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

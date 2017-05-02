@@ -247,9 +247,10 @@ extension AddGeotificationViewController: MKMapViewDelegate
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
   {
     let circleRenderer = MKCircleRenderer(overlay: overlay)
+    let pinkish = UIColor(red: 226.0/255.0, green: 122.0/255.0, blue: 128.0/255.0, alpha: 1.0)
     circleRenderer.lineWidth = 1.0
-    circleRenderer.strokeColor = .purple
-    circleRenderer.fillColor = UIColor.purple.withAlphaComponent(0.4)
+    circleRenderer.strokeColor = pinkish
+    circleRenderer.fillColor = pinkish.withAlphaComponent(0.4)
     return circleRenderer
   }
   
