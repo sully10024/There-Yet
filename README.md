@@ -2,7 +2,9 @@
 Are We There Yet is an app for iOS that utilizes geofence tracking to alert the user when they are there.
 
 # Details
-This app is very simple. It consists of two view controllers: one to show the user their location (using MapKit), and another for the user to set up their notification. It's pretty easy to use. 
+This app is very simple. It just does what it says it does in the description. Not much to it. It also doesn't send your data to the NSA (at least, not the way I coded it. I can't promise you 100% that Apple doesn't have a deal with the NSA because I'm pretty sure they do. anyway....)
 
 # Current Status
-There are a few bugs I need to iron out, but the code works at the moiment, which is good.
+Everything works! Enjoy!
+
+I plan on adding some new features down the line, as well.
