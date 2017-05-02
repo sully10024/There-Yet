@@ -21,6 +21,13 @@ class GeotificationsViewController: UIViewController {
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
     loadAllGeotifications()
+    
+    let currentUserLocation = locationManager.location?.coordinate
+    if currentUserLocation != nil
+    {
+      let viewRegion = MKCoordinateRegionMakeWithDistance(currentUserLocation!, 1000, 1000)
+      self.mapView.setRegion(viewRegion, animated: false)
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -3,35 +3,54 @@ import MapKit
 import CoreLocation
 import AVFoundation
 
-protocol AddGeotificationsViewControllerDelegate {
-  func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D,
-    radius: Double, identifier: String, note: String)
+protocol AddGeotificationsViewControllerDelegate
+{
+  func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String)
 }
 
 
-class AddGeotificationViewController: UITableViewController {
-
-    @IBOutlet var addButton: UIBarButtonItem!
-    @IBOutlet var zoomButton: UIBarButtonItem!
-    @IBOutlet weak var radiusSlider:  UISlider!
-    @IBOutlet weak var noteTextField: UITextField!
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var searchText: UITextField!
-    @IBOutlet weak var radiusLabel: UILabel!
-    @IBOutlet weak var unitsSwitcher: UISegmentedControl!
+class AddGeotificationViewController: UITableViewController
+{
+  @IBOutlet var addButton: UIBarButtonItem!
+  @IBOutlet var zoomButton: UIBarButtonItem!
+  @IBOutlet weak var radiusSlider:  UISlider!
+  @IBOutlet weak var noteTextField: UITextField!
+  @IBOutlet weak var mapView: MKMapView!
+  @IBOutlet weak var searchText: UITextField!
+  @IBOutlet weak var radiusLabel: UILabel!
+  @IBOutlet weak var unitsSwitcher: UISegmentedControl!
   
-    var matchingItems: [MKMapItem] = [MKMapItem]()
-    var delegate: AddGeotificationsViewControllerDelegate?
-    var isMetric = true
+  var matchingItems: [MKMapItem] = [MKMapItem]()
+  var delegate: AddGeotificationsViewControllerDelegate?
+  var isMetric = true
     
-    var recentSearchesArray: [String] = []
-    var lastSearch = ""
+  var recentSearchesArray: [String] = []
+  var lastSearch = ""
+  
+  var mapChangedFromUserInteraction = false
+  var geofencePreviewOverlay: MKCircle!
 
-  override func viewDidLoad() {
+  // asyncQueue lets you run processes in in the background, off of the main thread
+  let asyncQueue = DispatchQueue(label: "asyncQueue", attributes: .concurrent)
+
+  override func viewDidLoad()
+  {
     super.viewDidLoad()
     addButton.isEnabled = false
     
+    self.mapView.delegate = self
+    
     readRecentSearchArray()
+    
+    let locationManager = CLLocationManager()
+    let currentUserLocation = locationManager.location?.coordinate
+    if currentUserLocation != nil
+    {
+      let viewRegion = MKCoordinateRegionMakeWithDistance(currentUserLocation!, 10000, 10000)
+      self.mapView.setRegion(viewRegion, animated: false)
+    }
+    
+    self.mapView.add(MKCircle(center: mapView.region.center, radius: CLLocationDistance(radiusSlider.value)))
   }
   
   @IBAction func unitsSwitcherDidChange(_ sender: Any)
@@ -53,10 +72,13 @@ class AddGeotificationViewController: UITableViewController {
       radiusSlider.value = radiusSlider.minimumValue
       updateRadiusLabel()
     }
+    
+    updateGeotificationPreviewOverlay()
   }
   
   @IBAction func radiusSliderDidChange(_ sender: Any) {
     updateRadiusLabel()
+    updateGeotificationPreviewOverlay()
   }
   
   @IBAction func textFieldEditingChanged(sender: UITextField) {
@@ -67,6 +89,7 @@ class AddGeotificationViewController: UITableViewController {
     dismiss(animated: true, completion: nil)
   }
 
+  // when you hit add in the navigation bar to create the geotification
   @IBAction private func onAdd(sender: AnyObject) {
     let coordinate = mapView.centerCoordinate
     let radius = Double(String(format: "%.2f", radiusSlider.value))
@@ -79,39 +102,44 @@ class AddGeotificationViewController: UITableViewController {
     mapView.zoomToUserLocation()
   }
     
-    @IBAction func searchFieldDidBeginEditing(_ sender: Any)
-    {
-        matchingItems.removeAll()
-        mapView.removeAnnotations(mapView.annotations)
-    }
+  @IBAction func searchFieldDidBeginEditing(_ sender: Any)
+  {
+      matchingItems.removeAll()
+      mapView.removeAnnotations(mapView.annotations)
+  }
+  
+  func updateGeotificationPreviewOverlay()
+  {
+    self.mapView.removeOverlays(mapView.overlays)
+    self.mapView.add(MKCircle(center: mapView.region.center, radius: CLLocationDistance(radiusSlider.value)))
+  }
     
-    // Function for saving recent searches to long term storage, and removing the oldest
-    func writeRecentSearchArray()
-    {
-        let defaults = UserDefaults.standard
-        defaults.set(recentSearchesArray, forKey: "SavedRecentSearchesArray")
-    }
+  // Function for saving recent searches to long term storage, and removing the oldest
+  func writeRecentSearchArray()
+  {
+      let defaults = UserDefaults.standard
+      defaults.set(recentSearchesArray, forKey: "SavedRecentSearchesArray")
+  }
     
-    // Function for retreiving recent searches array from
-    func readRecentSearchArray()
-    {
-        let defaults = UserDefaults.standard
-        recentSearchesArray = defaults.stringArray(forKey: "SavedRecentSearchesArray")  ?? [String]()
-    }
+  // Function for retreiving recent searches array from
+  func readRecentSearchArray()
+  {
+      let defaults = UserDefaults.standard
+      recentSearchesArray = defaults.stringArray(forKey: "SavedRecentSearchesArray")  ?? [String]()
+  }
   
-    // Add a search to the array after doing a search in the searchBar
-    func addRecentSearchQueryToRecentSearchArray()
-    {
-        readRecentSearchArray()
-        recentSearchesArray.insert(lastSearch, at: 0)
-        writeRecentSearchArray()
-    }
-  
-  
+  // Add a search to the array after doing a search in the searchBar
+  func addRecentSearchQueryToRecentSearchArray()
+  {
+      readRecentSearchArray()
+      recentSearchesArray.insert(lastSearch, at: 0)
+      writeRecentSearchArray()
+  }
     
   func updateRadiusLabel()
   {
-    if isMetric {
+    if isMetric
+    {
       if radiusSlider.value < 1000 {
         radiusLabel.text = "\(Int(radiusSlider.value)) m"
       } else {
@@ -128,32 +156,31 @@ class AddGeotificationViewController: UITableViewController {
     }
   }
     
-    @IBAction func textFieldDidReturn(_ sender: AnyObject) {
-        _ = sender.resignFirstResponder()
-        mapView.removeAnnotations(mapView.annotations)
+  @IBAction func textFieldDidReturn(_ sender: AnyObject)
+  {
+    _ = sender.resignFirstResponder()
+    mapView.removeAnnotations(mapView.annotations)
 
-        lastSearch = searchText.text!
-        readRecentSearchArray()
+    lastSearch = searchText.text!
+    readRecentSearchArray()
         
-        while recentSearchesArray.count >= 5
-        {
-            recentSearchesArray.removeLast()
-        }
-        
-        recentSearchesArray.insert(lastSearch, at: 0)
-        writeRecentSearchArray()
-        
-        print("DEBUGGING FOR RECENT SEARCH ARRAY")
-        print(recentSearchesArray)
-        
-        self.performSearch()
+    while recentSearchesArray.count >= 5
+    {
+      recentSearchesArray.removeLast()
     }
-  
-
+        
+    recentSearchesArray.insert(lastSearch, at: 0)
+    writeRecentSearchArray()
+        
+    print("DEBUGGING FOR RECENT SEARCH ARRAY")
+    print(recentSearchesArray)
+        
+    self.performSearch()
+  }
   
   // method for doing a search
-  func performSearch() {
-    
+  func performSearch()
+  {
     matchingItems.removeAll()
     let request = MKLocalSearchRequest()
     request.naturalLanguageQuery = searchText.text
@@ -163,21 +190,25 @@ class AddGeotificationViewController: UITableViewController {
     
     var hasIteratedFirstItem = false // this is so that it only zooms to the first result
     
-    search.start(completionHandler: {(response, error) in
+    asyncQueue.async
+    {
+      search.start(completionHandler: {(response, error) in
       
-      if error != nil {
-        print("Error occured in search: \(error!.localizedDescription)")
-      } else if response!.mapItems.count == 0 {
-        print("No matches found")
-      } else {
-        print("Matches found")
+        if error != nil
+        {
+          print("Error occured in search: \(error!.localizedDescription)")
+        } else if response!.mapItems.count == 0 {
+          print("No matches found")
+        } else {
+          print("Matches found")
         
-        for item in response!.mapItems {
+        for item in response!.mapItems
+        {
           // this if block zooms to the first result
           if hasIteratedFirstItem == false
           {
             let newMapCenter = item.placemark.coordinate
-            let newMapRegion = MKCoordinateRegionMakeWithDistance(newMapCenter, 10000,10000)
+            let newMapRegion = MKCoordinateRegionMakeWithDistance(newMapCenter, 1000,1000)
             
             self.mapView.setRegion(newMapRegion, animated:true)
             
@@ -193,9 +224,33 @@ class AddGeotificationViewController: UITableViewController {
           let annotation = MKPointAnnotation()
           annotation.coordinate = item.placemark.coordinate
           annotation.title = item.name
-          self.mapView.addAnnotation(annotation)
+          self.mapView.addAnnotation(annotation)}
         }
-      }
-    })
+      })
+    }
   }
+}
+
+extension AddGeotificationViewController: MKMapViewDelegate
+{
+  func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    if (true)
+    {
+      print("mapview displayed region was changed")
+      print(self.mapView.centerCoordinate)
+      print("")
+      updateGeotificationPreviewOverlay()
+    }
+  }
+  
+  // for creating the preview overlay
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
+  {
+    let circleRenderer = MKCircleRenderer(overlay: overlay)
+    circleRenderer.lineWidth = 1.0
+    circleRenderer.strokeColor = .purple
+    circleRenderer.fillColor = UIColor.purple.withAlphaComponent(0.4)
+    return circleRenderer
+  }
+  
 }
