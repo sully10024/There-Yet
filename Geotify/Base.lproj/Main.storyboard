@@ -133,8 +133,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="444"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frU-qC-iGG">
-                                                    <rect key="frame" x="0.0" y="-94" width="375" height="538"/>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frU-qC-iGG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="444"/>
                                                     <color key="tintColor" red="0.85514622929999995" green="0.40063890810000002" blue="0.41404715180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <gestureRecognizers/>
                                                     <connections>
@@ -142,20 +142,20 @@
                                                     </connections>
                                                 </mapView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crosshairs" translatesAutoresizingMaskIntoConstraints="NO" id="m2R-Ts-LkR">
-                                                    <rect key="frame" x="170" y="204.5" width="35" height="35"/>
+                                                    <rect key="frame" x="170" y="205" width="35" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="35" id="2fo-47-6e4"/>
-                                                        <constraint firstAttribute="height" constant="35" id="cgs-ME-iDU"/>
+                                                        <constraint firstAttribute="height" constant="35" id="gj4-rG-nSr"/>
+                                                        <constraint firstAttribute="width" constant="35" id="pmp-Hp-OOI"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="frU-qC-iGG" secondAttribute="bottom" id="4ME-j8-V3b"/>
-                                                <constraint firstAttribute="trailing" secondItem="frU-qC-iGG" secondAttribute="trailing" id="5QP-P9-i15"/>
-                                                <constraint firstItem="frU-qC-iGG" firstAttribute="centerY" secondItem="m2R-Ts-LkR" secondAttribute="centerY" id="Thg-pP-lce"/>
-                                                <constraint firstItem="frU-qC-iGG" firstAttribute="centerX" secondItem="m2R-Ts-LkR" secondAttribute="centerX" id="auZ-zf-q6b"/>
-                                                <constraint firstItem="frU-qC-iGG" firstAttribute="top" secondItem="G8a-9u-bod" secondAttribute="top" id="bOW-iC-p66"/>
-                                                <constraint firstItem="frU-qC-iGG" firstAttribute="leading" secondItem="G8a-9u-bod" secondAttribute="leading" id="ucM-x3-2Ka"/>
+                                                <constraint firstItem="frU-qC-iGG" firstAttribute="leading" secondItem="G8a-9u-bod" secondAttribute="leading" id="86w-YC-LZw"/>
+                                                <constraint firstItem="frU-qC-iGG" firstAttribute="centerX" secondItem="m2R-Ts-LkR" secondAttribute="centerX" id="Al5-UR-8t8"/>
+                                                <constraint firstItem="frU-qC-iGG" firstAttribute="centerY" secondItem="m2R-Ts-LkR" secondAttribute="centerY" id="LdH-RS-Kke"/>
+                                                <constraint firstAttribute="bottom" secondItem="frU-qC-iGG" secondAttribute="bottom" id="al5-et-cZ4"/>
+                                                <constraint firstItem="frU-qC-iGG" firstAttribute="top" secondItem="G8a-9u-bod" secondAttribute="top" id="gsm-Ss-1wy"/>
+                                                <constraint firstAttribute="trailing" secondItem="frU-qC-iGG" secondAttribute="trailing" id="yWl-eh-rZH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
