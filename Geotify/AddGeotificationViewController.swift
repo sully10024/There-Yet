@@ -98,16 +98,19 @@ class AddGeotificationViewController: UITableViewController
     delegate?.addGeotificationViewController(controller: self, didAddCoordinate: coordinate, radius: radius!, identifier: identifier, note: note!)
   }
   
+  // Zooms the mapView region to the current location when the button gets pressed.
   @IBAction func onZoomToCurrentLocation(_ sender: Any) {
     mapView.zoomToUserLocation()
   }
-    
+  
+  // Clears the results from a previous search, and also removes all of the search result annotations from the mapView
   @IBAction func searchFieldDidBeginEditing(_ sender: Any)
   {
       matchingItems.removeAll()
       mapView.removeAnnotations(mapView.annotations)
   }
   
+  // Removes the existing radius preview, and draws a new one.
   func updateGeotificationPreviewOverlay()
   {
     self.mapView.removeOverlays(mapView.overlays)
@@ -135,7 +138,8 @@ class AddGeotificationViewController: UITableViewController
       recentSearchesArray.insert(lastSearch, at: 0)
       writeRecentSearchArray()
   }
-    
+  
+  // Updates the radius label next to the radius slider
   func updateRadiusLabel()
   {
     if isMetric
@@ -155,7 +159,8 @@ class AddGeotificationViewController: UITableViewController
       }
     }
   }
-    
+  
+  // An Interface Builder linked to the return button on the searchBar above the mapView
   @IBAction func textFieldDidReturn(_ sender: AnyObject)
   {
     _ = sender.resignFirstResponder()
@@ -178,7 +183,7 @@ class AddGeotificationViewController: UITableViewController
     self.performSearch()
   }
   
-  // method for doing a search
+  // Performs the search from the string typed into the UITextField
   func performSearch()
   {
     matchingItems.removeAll()
@@ -188,8 +193,9 @@ class AddGeotificationViewController: UITableViewController
     
     let search = MKLocalSearch(request: request)
     
-    var hasIteratedFirstItem = false // this is so that it only zooms to the first result
+    var hasIteratedFirstItem = false // (makes sure it only zooms into the first result as the pins load)
     
+    // Runs the code asyncronously to allow it to not clog up the main thread as it does this search
     asyncQueue.async
     {
       search.start(completionHandler: {(response, error) in
@@ -204,7 +210,7 @@ class AddGeotificationViewController: UITableViewController
         
         for item in response!.mapItems
         {
-          // this if block zooms to the first result
+          // This is the part that is responsible for zooming into the first search result
           if hasIteratedFirstItem == false
           {
             let newMapCenter = item.placemark.coordinate
@@ -231,8 +237,10 @@ class AddGeotificationViewController: UITableViewController
   }
 }
 
+// Methods pertain to the mapView
 extension AddGeotificationViewController: MKMapViewDelegate
 {
+  // Checks if the mapView region changed, and if it did, call the method that updates the position of the radius preview overlay
   func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
     if (true)
     {
@@ -243,7 +251,7 @@ extension AddGeotificationViewController: MKMapViewDelegate
     }
   }
   
-  // for creating the preview overlay
+  // The method that redraws the circle on the map. This method is called by the other method in this extension.
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
   {
     let circleRenderer = MKCircleRenderer(overlay: overlay)
