@@ -53,8 +53,10 @@ class AddGeotificationViewController: UITableViewController
     self.mapView.add(MKCircle(center: mapView.region.center, radius: CLLocationDistance(radiusSlider.value)))
   }
   
+  // Checks when the units setting changes, and sets everything accordingly
   @IBAction func unitsSwitcherDidChange(_ sender: Any)
   {
+    // if it's set to metric
     if unitsSwitcher.selectedSegmentIndex == 0 {
       isMetric = true
       radiusSlider.minimumValue = 50
@@ -64,6 +66,7 @@ class AddGeotificationViewController: UITableViewController
       updateRadiusLabel()
     }
     
+    // if it's set to imperial
     if unitsSwitcher.selectedSegmentIndex == 1 {
       isMetric = false
       radiusSlider.minimumValue = 60.96
@@ -76,15 +79,18 @@ class AddGeotificationViewController: UITableViewController
     updateGeotificationPreviewOverlay()
   }
   
+  // Checks when the radius slider gets moved
   @IBAction func radiusSliderDidChange(_ sender: Any) {
     updateRadiusLabel()
     updateGeotificationPreviewOverlay()
   }
   
+  // Tbh, this can probably be removed.
   @IBAction func textFieldEditingChanged(sender: UITextField) {
     addButton.isEnabled = true
   }
 
+  // When the cancel butten is pressed, dismiss the view controller
   @IBAction func onCancel(sender: AnyObject) {
     dismiss(animated: true, completion: nil)
   }
